@@ -43,12 +43,12 @@ td.taken {
 td.taken.cours {
 	/* Important = prevent hover animation */
 	background-color: red !important;
-	background-color: rgb(63, 118, 228) !important;
+	/* background-color: rgb(63, 118, 228) !important; */
 }
 
 td.taken.exercice {
-	/* #b51f1f */
-	background: #f86b0d
+	/* #f86b0d */
+	background: #b51f1f
 		url("https://edu.epfl.ch/vendors/elements/images/icons/icon-course-exercise.svg")
 		no-repeat 3px 3px !important;
 }
