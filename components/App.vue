@@ -20,7 +20,7 @@ useHead({
 		{
 			name: "description",
 			content:
-				"Partagez votre premier emploi du temps à l'EPFL et visualisez celui de vos camarades.",
+				"Partagez votre premier emploi du temps à l'EPFL et visualisez ceux de vos camarades.",
 		},
 	],
 });
