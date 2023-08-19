@@ -2,7 +2,7 @@
 	<div class="table-container">
 		<table class="ref-week">
 			<thead>
-				<td class="time">&nbsp;</td>
+				<td class="time"></td>
 				<td>Lu</td>
 				<td>Ma</td>
 				<td>Me</td>
@@ -127,7 +127,7 @@ table.ref-week {
 	box-sizing: border-box;
 	height: 3rem;
 	width: 16.6667%;
-	background: #e6e6e6;
+	background: #f0f0f0;
 	border: 2px solid #fff;
 	padding: 0rem 0.5rem;
 	transition: background-color 0.3s ease-in-out;
@@ -137,5 +137,17 @@ table.ref-week {
 	background: transparent;
 	font-size: 0.8rem;
 	padding-left: 0;
+}
+
+@media screen and (min-width: 65rem) {
+	/* .table-container {
+		max-width: 60rem;
+	} */
+
+	td {
+		--width: 10vw;
+		min-width: var(--width);
+		max-width: var(--width);
+	}
 }
 </style>

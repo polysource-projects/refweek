@@ -1,6 +1,4 @@
 <template>
-	<!-- <h1>form</h1> -->
-	<hr />
 	<form>
 		<!-- Section -->
 		<h2 for="section">Section</h2>
@@ -48,6 +46,9 @@ const validPath = (Object.keys(sections) as SectionCode[])
 let selectedSectionCode = ref<keyof typeof sections>(validPath || "MT");
 let selectedSection = computed(() => sections[selectedSectionCode.value]);
 
+if (validPath && path.value !== "/" + validPath) navigateTo("/" + validPath);
+if (!validPath && path.value !== "/") navigateTo("/");
+
 // Update path when section changes
 watch(selectedSectionCode, (code) => {
 	navigateTo("/" + code);
@@ -87,3 +88,24 @@ watch(courses, (courses) => {
 	eduStore.courses = courses;
 });
 </script>
+
+<style scoped>
+form {
+	margin-bottom: 3rem;
+}
+
+select {
+	background-color: white;
+	border: solid #e6e6e6;
+	height: 2.5rem;
+	width: 100%;
+	padding: 0 1rem;
+	appearance: none;
+}
+
+@media screen and (min-width: 65rem) {
+	form {
+		margin-bottom: 0;
+	}
+}
+</style>

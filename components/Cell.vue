@@ -36,6 +36,8 @@ td.taken {
 
 	vertical-align: middle;
 	text-align: center;
+
+	transition: background-color none;
 }
 
 td.taken.cours {

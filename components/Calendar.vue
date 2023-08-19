@@ -1,35 +1,36 @@
 <template>
 	<!-- Notice about conflicts / will be resolved later -->
-
-	<Notice
-		v-for="conflict in conflicts"
-		:key="
-			conflict.day +
-			(conflict.survivor.course.link ?? '') +
-			(conflict.extinct.course.link ?? '')
-		"
-	>
-		Attention : un conflit a été détecté le {{ days[conflict.day - 1] }} entre
-		<a :href="conflict.survivor.course.link" target="_blank">{{
-			conflict.survivor.title
-		}}</a
-		>, de {{ conflict.survivor.time }}h à
-		{{ conflict.survivor.time + conflict.survivor.duration }}h, et
-		<a :href="conflict.extinct.course.link" target="_blank">{{
-			conflict.extinct.title
-		}}</a
-		>, de {{ conflict.extinct.time }}h à
-		{{ conflict.extinct.time + conflict.extinct.duration }}h. Par conséquent, ce
-		dernier n'est pas affiché.
-	</Notice>
-	<!-- Week view -->
-	<!-- <ul>
+	<div class="with-notices">
+		<Notice
+			v-for="conflict in conflicts"
+			:key="
+				conflict.day +
+				(conflict.survivor.course.link ?? '') +
+				(conflict.extinct.course.link ?? '')
+			"
+		>
+			Attention : un conflit a été détecté le {{ days[conflict.day - 1] }} entre
+			<a :href="conflict.survivor.course.link" target="_blank">{{
+				conflict.survivor.title
+			}}</a
+			>, de {{ conflict.survivor.time }}h à
+			{{ conflict.survivor.time + conflict.survivor.duration }}h, et
+			<a :href="conflict.extinct.course.link" target="_blank">{{
+				conflict.extinct.title
+			}}</a
+			>, de {{ conflict.extinct.time }}h à
+			{{ conflict.extinct.time + conflict.extinct.duration }}h. Par conséquent,
+			ce dernier n'est pas affiché.
+		</Notice>
+		<!-- Week view -->
+		<!-- <ul>
 		<li v-for="lesson of lessonsWithoutConflicts">
 			{{ lesson.day }} | {{ lesson.time }}-{{ lesson.time + lesson.duration }} |
 			{{ lesson.title }}
 		</li>
 	</ul> -->
-	<Week :lessons="lessonsWithoutConflicts" />
+		<Week :lessons="lessonsWithoutConflicts" />
+	</div>
 </template>
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
@@ -72,3 +73,11 @@ const lessonsWithoutConflicts = computed(() => {
 	);
 });
 </script>
+
+<style scoped>
+@media screen and (min-width: 65rem) {
+	.with-notices {
+		max-width: 60vw;
+	}
+}
+</style>
