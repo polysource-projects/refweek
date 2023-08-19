@@ -1,63 +1,8 @@
-# Nuxt 3 Minimal Starter
+# weekref
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Une interface qui permet de visualiser son futur emploi du temps en tant qu'élève en BA1 à l'EPFL.
 
-## Setup
+Ce programme utilise des données préalablement récupérées à l'aide de [weekgen](https://github.com/a2br/weekgen).
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Inspiré par l'[idée](https://github.com/epfl-tools/epfl-weekbuilder) d'[Androz](https://github.com/Androz2091).
+Ceci n'est pas un service officiel, l'EPFL n'est pas à l'origine de ce projet.
