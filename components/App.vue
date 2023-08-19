@@ -15,7 +15,14 @@
 const { sharing, root } = defineProps<{ sharing?: boolean; root?: boolean }>();
 
 useHead({
-	title: "weekref EPFL",
+	title: "Emploi du temps EPFL",
+	meta: [
+		{
+			name: "description",
+			content:
+				"Partagez votre premier emploi du temps à l'EPFL et visualisez celui de vos camarades.",
+		},
+	],
 });
 </script>
 
