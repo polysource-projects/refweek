@@ -26,6 +26,7 @@
 	left: 0;
 
 	background-color: inherit;
+	z-index: 1;
 
 	border-bottom: 1px solid #dadada;
 }
