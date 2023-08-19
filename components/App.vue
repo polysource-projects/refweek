@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="config">
 			<!-- Form -->
-			<Form :sharing="sharing" />
+			<Form :sharing="sharing" :root="root" />
 		</div>
 		<!-- Calendar view -->
 		<div class="cal">
@@ -12,7 +12,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-const { sharing } = defineProps<{ sharing?: boolean }>();
+const { sharing, root } = defineProps<{ sharing?: boolean; root?: boolean }>();
 
 useHead({
 	title: "weekref EPFL",

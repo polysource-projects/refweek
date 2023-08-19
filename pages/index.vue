@@ -1,3 +1,3 @@
 <template>
-	<App />
+	<App root />
 </template>

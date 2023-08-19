@@ -39,8 +39,9 @@ import { useEduStore } from "@/store/edu";
 import { Course, SectionCode } from "@/types/course";
 import sections from "@/store/sections.json";
 
-const { sharing } = defineProps<{
+const { sharing, root } = defineProps<{
 	sharing?: boolean;
+	root?: boolean;
 }>();
 
 const defaultSection: SectionCode = "MT";
@@ -56,9 +57,9 @@ let choices = reactive<Record<SectionCode, Record<string, string>>>({
 } as any);
 
 // url -> state
-parseCode();
+!root && parseCode();
 // state -> url
-!sharing && updateCode();
+!root && !sharing && updateCode();
 
 // Set default choices
 
