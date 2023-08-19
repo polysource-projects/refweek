@@ -77,7 +77,7 @@ const lessonsWithoutConflicts = computed(() => {
 <style scoped>
 @media screen and (min-width: 65rem) {
 	.with-notices {
-		max-width: 60vw;
+		max-width: 65vw;
 	}
 }
 </style>

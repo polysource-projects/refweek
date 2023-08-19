@@ -1,7 +1,7 @@
 <template>
+	<LogoHead />
 	<div class="container">
 		<div class="config">
-			<h1>epfl weekref</h1>
 			<!-- Form -->
 			<Form />
 		</div>
@@ -20,33 +20,34 @@ useHead({
 <style scoped>
 div.container {
 	margin: 2rem auto;
-	width: min(50rem, 95%);
+	width: min(50rem, 90%);
 	display: flex;
 	flex-direction: column;
 }
 
 @media screen and (min-width: 65rem) {
 	div.container {
-		margin: 0 0;
+		margin: 0;
+		margin-top: 2rem;
 		margin-right: 2rem;
 		width: auto;
-		height: 100vh;
+		height: calc(100vh - 2rem);
 		flex-direction: row;
 	}
 
 	div.config {
 		flex-grow: 1;
-		padding: 3vh 2%;
 
 		overflow-y: scroll;
 		max-width: 25rem;
+		height: 100%;
 		min-width: 20rem;
-		height: calc(100% - 6vh);
-		background-color: #f0f0f0;
+		border-right: 1px solid #dadada;
 	}
 
 	div.cal {
 		margin: 0 2rem;
+		margin-top: -2rem;
 		display: flex;
 		height: 100%;
 		width: 100%;

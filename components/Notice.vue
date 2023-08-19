@@ -17,7 +17,7 @@
 
 	display: flex;
 	align-items: center;
-	border: 1px solid #1b1b1b;
+	border: 1px solid #dadada;
 }
 
 .icon {

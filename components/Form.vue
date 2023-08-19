@@ -1,5 +1,6 @@
 <template>
 	<form>
+		<h1>weekref</h1>
 		<!-- Section -->
 		<h2 for="section">Section</h2>
 		<select name="section" v-model="selectedSectionCode">
@@ -33,7 +34,7 @@ import { useEduStore } from "../store/edu";
 import { Course, SectionCode } from "../types/course";
 import sections from "../store/sections.json";
 
-const eduStore = useEduStore();
+const defaultSection: SectionCode = "MT";
 
 // Get URL path
 const route = useRoute();
@@ -43,7 +44,9 @@ const validPath = (Object.keys(sections) as SectionCode[])
 	.find((code) => path.value.toUpperCase().startsWith("/" + code.toUpperCase()))
 	?.toUpperCase() as SectionCode | undefined;
 
-let selectedSectionCode = ref<keyof typeof sections>(validPath || "MT");
+let selectedSectionCode = ref<keyof typeof sections>(
+	validPath || defaultSection
+);
 let selectedSection = computed(() => sections[selectedSectionCode.value]);
 
 if (validPath && path.value !== "/" + validPath) navigateTo("/" + validPath);
@@ -83,6 +86,7 @@ const courses = computed(() => {
 	return courses;
 });
 
+const eduStore = useEduStore();
 eduStore.courses = courses.value;
 watch(courses, (courses) => {
 	eduStore.courses = courses;
@@ -106,6 +110,13 @@ select {
 @media screen and (min-width: 65rem) {
 	form {
 		margin-bottom: 0;
+
+		padding: 3vh clamp(2rem, 2vw, 5rem);
+		padding-top: 2rem;
+	}
+
+	h1 {
+		margin-top: 0;
 	}
 }
 </style>

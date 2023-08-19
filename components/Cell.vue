@@ -3,8 +3,14 @@
 		v-if="lesson?.duration"
 		:rowspan="lesson.duration"
 		:class="`taken ${lesson.type}`"
+		:title="`${lesson.type}`"
 	>
-		{{ lesson.title }}
+		<a v-if="lesson.course.link" target="_blank" :href="lesson.course.link">
+			{{ lesson.title }}
+		</a>
+		<template v-else>
+			{{ lesson.title }}
+		</template>
 	</td>
 	<td v-else></td>
 </template>
@@ -38,6 +44,11 @@ td.taken {
 	text-align: center;
 
 	transition: background-color none;
+}
+
+td.taken a {
+	text-decoration: none;
+	color: white;
 }
 
 td.taken.cours {
