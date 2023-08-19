@@ -7,11 +7,7 @@
 		<Calendar />
 	</div>
 </template>
-<script setup lang="ts">
-useHead({
-	title: "epfl weekref",
-});
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 div.container {
