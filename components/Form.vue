@@ -26,8 +26,8 @@
 				<Icon class="icon" name="material-symbols:edit-square-outline-sharp" />
 				Modifier
 			</a>
-			<a v-else :href="'/' + route.params.code + '/share'" @click="copyLink">
-				<Icon class="icon" name="material-symbols:content-copy-outline" />
+			<a v-else :href="'/' + route.params.code + '/share'">
+				<Icon class="icon" name="ic:outline-ios-share" />
 				Partager
 			</a>
 		</div>
@@ -185,13 +185,6 @@ eduStore.courses = courses.value;
 watch(courses, (courses) => {
 	eduStore.courses = courses;
 });
-
-function copyLink() {
-	navigator.clipboard.writeText(window.location.href + "/share");
-	alert(
-		"Le lien vers votre emploi du temps a été copié dans le presse-papier."
-	);
-}
 </script>
 
 <style scoped>
