@@ -1,7 +1,7 @@
 <template>
 	<form>
 		<!-- Section -->
-		<select name="section" v-model="selectedSectionCode">
+		<select name="section" v-model="selectedSectionCode" :disabled="sharing">
 			<option v-for="section of sections" :value="section.sectionCode">
 				{{ section.sectionCode }} - {{ section.sectionName }}
 			</option>
@@ -13,7 +13,7 @@
 			<select
 				:name="'group ' + group.groupName"
 				v-model="choices[selectedSectionCode][group.groupName]"
-				:disabled="group.courses.length <= 1"
+				:disabled="sharing || group.courses.length <= 1"
 			>
 				<option v-for="cours of group.courses" :value="cours.name">
 					{{ cours.teachers.map((t) => t.name).join(", ") }}
@@ -21,16 +21,27 @@
 				</option>
 			</select>
 		</div>
+		<div class="toolbar">
+			<a v-if="sharing" :href="'/' + route.params.code">
+				<Icon class="icon" name="material-symbols:edit-square-outline-sharp" />
+				Modifier
+			</a>
+			<a v-else :href="'/' + route.params.code + '/share'" @click="copyLink">
+				<Icon class="icon" name="material-symbols:content-copy-outline" />
+				Partager
+			</a>
+		</div>
 	</form>
-	<ul>
-		<!-- <li v-for="section of sections">{{ section. }}</li> -->
-	</ul>
 </template>
 
 <script setup lang="ts">
-import { useEduStore } from "../store/edu";
-import { Course, SectionCode } from "../types/course";
-import sections from "../store/sections.json";
+import { useEduStore } from "@/store/edu";
+import { Course, SectionCode } from "@/types/course";
+import sections from "@/store/sections.json";
+
+const { sharing } = defineProps<{
+	sharing?: boolean;
+}>();
 
 const defaultSection: SectionCode = "MT";
 
@@ -47,7 +58,7 @@ let choices = reactive<Record<SectionCode, Record<string, string>>>({
 // url -> state
 parseCode();
 // state -> url
-updateCode();
+!sharing && updateCode();
 
 // Set default choices
 
@@ -66,23 +77,24 @@ watch([selectedSectionCode, choices], () => {
 
 // Change state depending on URL
 function parseCode() {
-	const validPath = (Object.keys(sections) as SectionCode[])
+	const rawCode = route.params.code.toString();
+	const sectionCode = (Object.keys(sections) as SectionCode[])
 		.find((code) =>
-			route.path.toUpperCase().startsWith("/" + code.toUpperCase())
+			rawCode.toString().toUpperCase().startsWith(code.toUpperCase())
 		)
 		?.toUpperCase() as SectionCode | undefined;
 
 	// Parse section
-	if (validPath) {
-		selectedSectionCode.value = validPath;
+	if (sectionCode) {
+		selectedSectionCode.value = sectionCode;
 	} else {
 		selectedSectionCode.value = defaultSection;
 	}
 
 	// Parse number after
 	// Parse courses
-	if (route.path.startsWith("/" + selectedSectionCode.value + "+")) {
-		const split = route.path.split("+");
+	if (rawCode.startsWith(selectedSectionCode.value + "+")) {
+		const split = rawCode.split("+");
 		const numericals = split[1];
 
 		let i = 0;
@@ -172,6 +184,13 @@ eduStore.courses = courses.value;
 watch(courses, (courses) => {
 	eduStore.courses = courses;
 });
+
+function copyLink() {
+	navigator.clipboard.writeText(window.location.href + "/share");
+	alert(
+		"Le lien vers votre emploi du temps a été copié dans le presse-papier."
+	);
+}
 </script>
 
 <style scoped>
@@ -197,6 +216,21 @@ select {
 select:disabled {
 	color: grey;
 	background-color: #eaeaea;
+}
+
+.toolbar {
+	display: flex;
+	padding: 1rem 0;
+}
+
+.toolbar a {
+	margin-left: auto;
+	text-decoration: none;
+	font-size: 0.9rem;
+}
+
+.toolbar .icon {
+	margin-top: -0.3rem;
 }
 
 @media screen and (min-width: 65rem) {

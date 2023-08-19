@@ -34,7 +34,7 @@
 </template>
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useEduStore } from "../store/edu";
+import { useEduStore } from "@/store/edu";
 
 const days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
 

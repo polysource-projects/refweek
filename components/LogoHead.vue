@@ -1,7 +1,6 @@
 <template>
 	<header class="head">
 		<div class="inside">
-			<!-- <h1>EPFL Weekref</h1> -->
 			<a target="_blank" href="https://edu.epfl.ch/studyplan/fr/propedeutique/">
 				<img
 					src="https://www.epfl.ch/wp/6/wp-content/themes/wp-theme-2018/assets/svg/epfl-logo.svg"
@@ -34,6 +33,8 @@
 .head .inside {
 	display: flex;
 	align-items: center;
+	justify-content: center;
+
 	background-color: white;
 	width: 100%;
 	height: 1rem;

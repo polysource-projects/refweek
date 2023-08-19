@@ -30,8 +30,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { range } from "../util/range";
-import { useEduStore } from "../store/edu";
+import { range } from "@/util/range";
+import { useEduStore } from "@/store/edu";
 
 const eduStore = useEduStore();
 const { lessons } = storeToRefs(eduStore);
