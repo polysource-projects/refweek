@@ -39,7 +39,7 @@ div.container {
 		flex-grow: 1;
 
 		overflow-y: scroll;
-		max-width: 25rem;
+		max-width: 20rem;
 		height: 100%;
 		min-width: 20rem;
 		border-right: 1px solid #dadada;

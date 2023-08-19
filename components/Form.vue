@@ -204,7 +204,7 @@ select:disabled {
 		margin-top: 0;
 		margin-bottom: 0;
 
-		padding: 3vh clamp(2rem, 2vw, 5rem);
+		padding: 3vh 2rem;
 		border-bottom: none;
 	}
 }
