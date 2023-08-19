@@ -1,8 +1,6 @@
 <template>
 	<form>
-		<h1>weekref</h1>
 		<!-- Section -->
-		<h2 for="section">Section</h2>
 		<select name="section" v-model="selectedSectionCode">
 			<option v-for="section of sections" :value="section.sectionCode">
 				{{ section.sectionCode }} - {{ section.sectionName }}
@@ -38,43 +36,126 @@ const defaultSection: SectionCode = "MT";
 
 // Get URL path
 const route = useRoute();
-const path = ref(route.path);
 
-const validPath = (Object.keys(sections) as SectionCode[])
-	.find((code) => path.value.toUpperCase().startsWith("/" + code.toUpperCase()))
-	?.toUpperCase() as SectionCode | undefined;
-
-let selectedSectionCode = ref<keyof typeof sections>(
-	validPath || defaultSection
-);
+let selectedSectionCode = ref<keyof typeof sections>(defaultSection);
 let selectedSection = computed(() => sections[selectedSectionCode.value]);
 
-if (validPath && path.value !== "/" + validPath) navigateTo("/" + validPath);
-if (!validPath && path.value !== "/") navigateTo("/");
-
-// Update path when section changes
-watch(selectedSectionCode, (code) => {
-	navigateTo("/" + code);
-});
-
-let choices = ref<Record<SectionCode, Record<string, string>>>({
+let choices = reactive<Record<SectionCode, Record<string, string>>>({
 	// groupName: courseName
 } as any);
+
+// url -> state
+parseCode();
+// state -> url
+updateCode();
 
 // Set default choices
 
 for (const code of Object.keys(sections) as SectionCode[]) {
-	choices.value[code] = {};
+	choices[code] ??= {};
 	for (const group of sections[code].groups) {
-		choices.value[code][group.groupName] = group.courses[0].name;
+		choices[code][group.groupName] ??= group.courses[0].name;
 	}
+}
+
+// Update path when section changes
+watch([selectedSectionCode, choices], () => {
+	// update URL
+	updateCode();
+});
+
+// Change state depending on URL
+function parseCode() {
+	const validPath = (Object.keys(sections) as SectionCode[])
+		.find((code) =>
+			route.path.toUpperCase().startsWith("/" + code.toUpperCase())
+		)
+		?.toUpperCase() as SectionCode | undefined;
+
+	// Parse section
+	if (validPath) {
+		selectedSectionCode.value = validPath;
+	} else {
+		selectedSectionCode.value = defaultSection;
+	}
+
+	// Parse number after
+	// Parse courses
+	if (route.path.startsWith("/" + selectedSectionCode.value + "+")) {
+		const split = route.path.split("+");
+		const numericals = split[1];
+
+		let i = 0;
+
+		for (const group of selectedSection.value.groups) {
+			// Find index of selected course
+			if (group.courses.length === 1) {
+				// Skip it, nothing to choose
+				continue;
+			}
+
+			let courseIndex = parseInt(numericals[i]);
+			if (isNaN(courseIndex) || courseIndex >= group.courses.length) {
+				i++;
+				continue;
+			}
+
+			if (!choices[selectedSectionCode.value]) {
+				choices[selectedSectionCode.value] = {};
+			}
+
+			choices[selectedSectionCode.value][group.groupName] =
+				group.courses[courseIndex].name;
+
+			i++;
+		}
+	}
+}
+
+// Find the state's code and put it in the URL
+function updateCode() {
+	const code = selectedSectionCode.value;
+	let nextPath = "/";
+	if (code) {
+		nextPath = "/" + code;
+	}
+	// Find exact code
+	let numericalCode = "";
+	// console.log({ code, section: selectedSection.value });
+	for (const group of selectedSection.value.groups) {
+		// Find index of selected course
+		if (group.courses.length === 1) {
+			// Skip it, nothing to choose
+			continue;
+		}
+		const index =
+			!choices[code] || !choices[code][group.groupName]
+				? 0
+				: group.courses.findIndex(
+						(course) => course.name === choices[code][group.groupName]
+				  );
+		numericalCode += index.toString();
+	}
+
+	// Remove every trailing 0 from numericalCode
+	let finalCode = "";
+	for (let i = numericalCode.length - 1; i >= 0; i--) {
+		if (numericalCode[i] === "0") {
+			continue;
+		}
+		finalCode = numericalCode.slice(0, i + 1);
+		break;
+	}
+	const finalPath = nextPath + (finalCode ? "+" + finalCode : "");
+
+	if (finalPath !== route.path) navigateTo(finalPath);
 }
 
 // Get and set courses depending on choices
 const courses = computed(() => {
 	const courses: Course[] = [];
 	for (const [groupName, courseName] of Object.entries(
-		choices.value[selectedSectionCode.value]
+		choices[selectedSectionCode.value]
 	)) {
 		// Find course
 		const { courses: groupCourses } = selectedSection.value.groups.find(
@@ -95,11 +176,16 @@ watch(courses, (courses) => {
 
 <style scoped>
 form {
-	margin-bottom: 3rem;
+	margin-top: 1rem;
+
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #dadada;
+	margin-bottom: 2rem;
 }
 
 select {
 	background-color: white;
+	color: black;
 	border: solid 1px #e6e6e6;
 	border-radius: 0;
 	height: 2.5rem;
@@ -108,16 +194,18 @@ select {
 	appearance: none;
 }
 
+select:disabled {
+	color: grey;
+	background-color: #eaeaea;
+}
+
 @media screen and (min-width: 65rem) {
 	form {
+		margin-top: 0;
 		margin-bottom: 0;
 
 		padding: 3vh clamp(2rem, 2vw, 5rem);
-		padding-top: 2rem;
-	}
-
-	h1 {
-		margin-top: 0;
+		border-bottom: none;
 	}
 }
 </style>

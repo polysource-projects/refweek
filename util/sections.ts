@@ -1,0 +1,15 @@
+export const SECTIONS = {
+	IN: "informatique",
+	AR: "architecture",
+	CGC: "chimie-et-genie-chimique",
+	GC: "genie-civil",
+	GM: "genie-mecanique",
+	EL: "genie-electrique-et-electronique",
+	SV: "ingenierie-des-sciences-du-vivant",
+	MA: "mathematiques",
+	MT: "microtechnique",
+	PH: "physique",
+	MX: "science-et-genie-des-materiaux",
+	SIE: "sciences-et-ingenierie-de-l-environnement",
+	SC: "systemes-de-communication",
+};
