@@ -77,10 +77,10 @@ watch([selectedSectionCode, choices], () => {
 
 // Change state depending on URL
 function parseCode() {
-	const rawCode = route.params.code.toString();
+	const rawCode = route.params.code?.toString() || undefined;
 	const sectionCode = (Object.keys(sections) as SectionCode[])
 		.find((code) =>
-			rawCode.toString().toUpperCase().startsWith(code.toUpperCase())
+			rawCode?.toString().toUpperCase().startsWith(code.toUpperCase())
 		)
 		?.toUpperCase() as SectionCode | undefined;
 
@@ -93,7 +93,7 @@ function parseCode() {
 
 	// Parse number after
 	// Parse courses
-	if (rawCode.startsWith(selectedSectionCode.value + "+")) {
+	if (rawCode?.startsWith(selectedSectionCode.value + "+")) {
 		const split = rawCode.split("+");
 		const numericals = split[1];
 
