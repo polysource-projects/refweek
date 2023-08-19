@@ -26,4 +26,10 @@
 	margin-right: 0.5rem;
 	margin-top: -2px;
 }
+
+@media screen and (min-width: 65rem) {
+	.notice {
+		width: max(calc(60vw - 2.4rem), 40rem);
+	}
+}
 </style>

@@ -112,11 +112,7 @@ table.ref-week {
 
 .ref-week tbody {
 	font-weight: 400;
-	/* line-height: 1.5; */
 }
-/* 
-.ref-week tr {
-} */
 
 .ref-week tr:hover td {
 	background-color: #d5d5d5;
@@ -140,10 +136,6 @@ table.ref-week {
 }
 
 @media screen and (min-width: 65rem) {
-	/* .table-container {
-		max-width: 60rem;
-	} */
-
 	td {
 		--width: 10vw;
 		min-width: var(--width);
