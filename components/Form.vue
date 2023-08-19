@@ -100,7 +100,8 @@ form {
 
 select {
 	background-color: white;
-	border: solid #e6e6e6;
+	border: solid 1px #e6e6e6;
+	border-radius: 0;
 	height: 2.5rem;
 	width: 100%;
 	padding: 0 1rem;
