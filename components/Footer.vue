@@ -1,6 +1,6 @@
 <template>
 	<footer>
-		<a href="https://github.com/a2br/weekref">
+		<a href="https://github.com/epfl-tools/refweek">
 			<Icon class="icon" name="mdi:github" />
 		</a>
 		Développé par <a href="/MT">Anatole Debierre</a> et inspiré par le
