@@ -14,9 +14,9 @@ RUN npm install --frozen-lockfile
 COPY . .
 
 # Build the app
-RUN pnpm run build
+RUN npm run build
 
 # Expose the port
 EXPOSE 3000
 
-CMD ["npm", "nuxt", "start"]
+CMD ["npm", "start"]
