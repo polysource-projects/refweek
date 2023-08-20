@@ -1,9 +1,13 @@
 <template>
 	<footer>
-		Développé par Anatole Debierre, 2023, et inspiré par le projet d'Androz.
-		<a href="https://github.com/a2br/weekref"
-			><Icon class="icon" name="mdi:github"
-		/></a>
+		<a href="https://github.com/a2br/weekref">
+			<Icon class="icon" name="mdi:github" />
+		</a>
+		Développé par <a href="/MT">Anatole Debierre</a> et inspiré par le
+		<a target="_blank" href="https://github.com/epfl-tools/epfl-weekbuilder"
+			>projet</a
+		>
+		d'Androz.
 	</footer>
 </template>
 
@@ -17,6 +21,10 @@ footer {
 	font-size: 0.9rem;
 
 	color: #989898;
+}
+
+a {
+	color: inherit;
 }
 
 .icon {
