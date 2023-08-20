@@ -1,9 +1,11 @@
 <template>
 	<footer>
-		<a href="https://github.com/epfl-tools/refweek">
+		<a target="_blank" href="https://github.com/epfl-tools/refweek">
 			<Icon class="icon" name="mdi:github" />
 		</a>
-		Développé par <a href="/MT">Anatole Debierre</a> et inspiré par le
+		Développé par
+		<a target="_blank" href="https://github.com/a2br">Anatole Debierre</a> et
+		inspiré par le
 		<a target="_blank" href="https://github.com/epfl-tools/epfl-weekbuilder"
 			>projet</a
 		>
