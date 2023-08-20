@@ -32,6 +32,7 @@
 			</a>
 		</div>
 	</form>
+	<Footer class="desktop-footer" />
 </template>
 
 <script setup lang="ts">
@@ -227,6 +228,11 @@ select:disabled {
 	margin-top: -0.3rem;
 }
 
+.desktop-footer {
+	display: none;
+	padding: 1rem 2rem;
+}
+
 @media screen and (min-width: 65rem) {
 	form {
 		margin-top: 0;
@@ -234,6 +240,10 @@ select:disabled {
 
 		padding: 3vh 2rem;
 		border-bottom: none;
+	}
+
+	.desktop-footer {
+		display: block;
 	}
 }
 </style>

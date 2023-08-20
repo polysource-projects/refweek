@@ -9,6 +9,7 @@
 		<div class="cal">
 			<Calendar class="calendar" />
 		</div>
+		<Footer class="mobile-footer" />
 	</div>
 </template>
 <script setup lang="ts">
@@ -34,6 +35,12 @@ div.container {
 	flex-direction: column;
 }
 
+.mobile-footer {
+	margin-top: 3rem;
+	margin-bottom: -3rem;
+	display: block;
+}
+
 @media screen and (min-width: 65rem) {
 	div.container {
 		margin: 0;
@@ -46,7 +53,8 @@ div.container {
 
 	div.config {
 		flex-grow: 1;
-
+		display: flex;
+		flex-direction: column;
 		overflow-y: scroll;
 		max-width: 20rem;
 		height: 100%;
@@ -62,6 +70,10 @@ div.container {
 		width: 100%;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.mobile-footer {
+		display: none;
 	}
 }
 </style>
