@@ -69,7 +69,7 @@ const lessonsWithoutConflicts = computed(() => {
 				}
 
 				return conflicted;
-			})
+			}),
 	);
 });
 </script>
@@ -77,7 +77,8 @@ const lessonsWithoutConflicts = computed(() => {
 <style scoped>
 @media screen and (min-width: 65rem) {
 	.with-notices {
-		max-width: 65vw;
+		width: 100%;
+		height: 85%;
 	}
 }
 </style>

@@ -3,11 +3,11 @@
 		<table class="ref-week">
 			<thead>
 				<td class="time"></td>
-				<td>Lu</td>
-				<td>Ma</td>
-				<td>Me</td>
-				<td>Je</td>
-				<td>Ve</td>
+				<td>Lundi</td>
+				<td>Mardi</td>
+				<td>Mercredi</td>
+				<td>Jeudi</td>
+				<td>Vendredi</td>
 			</thead>
 			<tbody>
 				<tr v-for="hour in range(8, 18)">
@@ -43,7 +43,7 @@ function notOverflowed(day: number, hour: number): boolean {
 			(lesson) =>
 				lesson.day === day &&
 				lesson.time < hour &&
-				lesson.time + lesson.duration > hour
+				lesson.time + lesson.duration > hour,
 		) === undefined
 	);
 }
@@ -87,8 +87,9 @@ function notOverflowed(day: number, hour: number): boolean {
 }
 
 div.table-container {
-	width: 100%;
-	overflow-x: scroll;
+	display: flex;
+	height: 100%;
+	overflow-x: auto;
 }
 
 table.ref-week {
@@ -132,7 +133,7 @@ table.ref-week {
 .ref-week td.time {
 	background: transparent;
 	font-size: 0.8rem;
-	padding-left: 0;
+	padding: 0rem 0.5rem;
 }
 
 @media screen and (min-width: 65rem) {
