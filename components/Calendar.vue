@@ -75,10 +75,16 @@ const lessonsWithoutConflicts = computed(() => {
 </script>
 
 <style scoped>
-@media screen and (min-width: 65rem) {
-	.with-notices {
-		width: 100%;
-		height: 85%;
-	}
+.with-notices {
+	width: 100%;
+	height: 85%;
+
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+}
+
+.with-notices > .table-container {
+	border: 1px solid #dadada;
 }
 </style>
