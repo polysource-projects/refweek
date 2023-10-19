@@ -69,15 +69,22 @@ const lessonsWithoutConflicts = computed(() => {
 				}
 
 				return conflicted;
-			})
+			}),
 	);
 });
 </script>
 
 <style scoped>
-@media screen and (min-width: 65rem) {
-	.with-notices {
-		max-width: 65vw;
-	}
+.with-notices {
+	width: 100%;
+	height: 85%;
+
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+}
+
+.with-notices > .table-container {
+	border: 1px solid #dadada;
 }
 </style>

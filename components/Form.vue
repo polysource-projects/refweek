@@ -238,7 +238,7 @@ select:disabled {
 		margin-top: 0;
 		margin-bottom: 0;
 
-		padding: 3vh 2rem;
+		padding: 3vh 1.5rem;
 		border-bottom: none;
 	}
 

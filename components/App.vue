@@ -55,7 +55,7 @@ div.container {
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		overflow-y: scroll;
+		overflow-y: auto;
 		max-width: 20rem;
 		height: 100%;
 		min-width: 20rem;
@@ -63,10 +63,8 @@ div.container {
 	}
 
 	div.cal {
-		margin: 0 2rem;
-		margin-top: -2rem;
+		margin: 0 3rem;
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
